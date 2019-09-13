@@ -176,10 +176,10 @@ the best documentation right now is the source code.
 # spiral end goals  
   
 * be able to create video-games with complex magic system that will allow to its player create custom magics,  
- and transfer that knowledge to other players, I am big fan of the overlord novel, I want a video game like this  
+ and transfer that knowledge to other players, I am big fan of the `overlord light novel`, and I want a video game like this  
    
 * compile and simulate chemical reactions  
   
-* be able to compile for first time an eukaryotic cell  
+* be able to compile and run for first time an fully eukaryotic cell  
   
 * check if we live or not in a simulation.
