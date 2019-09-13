@@ -30,7 +30,7 @@ oh no! it just looks  awfully similar to  javascript,  `let the (#fun ctor) begi
 ### your first functor   
 
 ```javascript  
-functor hi(name)=> `Hi!! {name->str}`   
+functor hi(name)=> `Hi!! {name}`   
 
 /// all the below lines will works and  print the same   
 console.log(hi(`john`))  
