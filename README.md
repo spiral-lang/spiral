@@ -70,7 +70,7 @@ let x = 50;
 x.print_bitcoin()  /// ok
 x.print_dollar() /// Error!!! when x was used on print_bitcoin, print_bitcoin propagate the bitcoin type to x
 x.0.print_dollar() /// ok  #forgetful morphism as `member access` will return a codomain that has forget 
-where it belongs, in this case because the codmain is a number it  can be casted again as dollar
+// where it belongs, in this case because the codmain is a number it  can be casted again as dollar
 
 (x-> number).print_dollar() /// `->` is another #forgetful functor , it mean force the morphism 
 
