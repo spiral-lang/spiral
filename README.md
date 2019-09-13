@@ -3,7 +3,7 @@
 `state`: (#design phase) & (#unstable #experimental stage) 
  
 `description`:  spiral is a functional language that `try!!!` to follow the category theory, and there is and `!!!` in
- try due that is not 1:1 mapping and is not the intention to do it formally or use the exact same jargon, 
+ try due that is not `1:1` mapping and is not the intention to do it formally or use the exact same jargon, 
  also while some concepts sound similar to `Haskell` and can be effectively similar and even `#auto morphics` in some
  contexts  they are not same, in spiral the  `#category theory`  has priority  then concept from other languages come later.
 
