@@ -81,10 +81,10 @@ category bitcoin (self: bitcoin): bitcoin;
 /// instead in spiral objects are mapped to categories
 
 // here we tell the compiler that every #natural number can be mapped to bitcoin
-mapfn bitcoin(#natural  number): bitcoin;
+bitcoin(#natural  number): bitcoin;
 
 /// some of the rational number too
-mapfn bitcoin(x: #rational  number): bitcoin{
+bitcoin(x: #rational  number): bitcoin{
     /// this assertion will be propagated and become a unitests, user input validations or fuzzy test.
     /// spiral provides the tool to generate them automatically
     /// we only should care that the assertion have a name in this case BMT
@@ -104,15 +104,15 @@ console.log(bitcoin(2323.000000015))// bitcoin::BMT is fired
 /// check if is a valid natural number and then approved the mapping
 /// all those steps already exist on #natural number so not necessary to write
 /// them here due to type propagation
-mapfn bitcoin(x: str): #number bitcoin;
+bitcoin(x: str): #number bitcoin;
 /// but where is the map between #number a bitcoin?  it will use the above maps 
 /// and get whatever win first without ambiguities, in the case on ambiguities it
 /// will raise an error if your logic is correct the hashtag operator #,  will not raise any exception,
 /// while you write your code the compiler is testing the # operator algebraic properties in the background   
 
 
-functor print_dollar(x: dollar) => console.log(`{x->str} $US`)   
-functor print_bitcoin(x: bitcoin) => console.log(`{x->str} BTC`)
+functor print_dollar(dollar) => console.log(`{dollar->number->str} $US`)   
+functor print_bitcoin(bitcoin) => console.log(`{bitcoin->number->str} BTC`)
   
 dollar(50).print_dollar() /// ok: 50 $USD
 dollar(50).print_bitcoin() /// Error: print_bitcoin is not defined for dollar  
@@ -154,7 +154,7 @@ console.log(bitcoin(50) + bitcoin(30/90)) /// bitcoin(4530/90)
 // this morphims does not lose info 50/1 == 50
   
 /// let fix those dam errros!!   whe should create a morphism between bitcoin and dollar
-mapfn bitcoin(dollar): bitcoin =>  dollar->number / 10'000;  
+bitcoin(dollar): bitcoin =>  dollar->number / 10'000;  
 /// the result here is then  be them pipelined to  
 /// the mapfn bitcoin(x: #rational  number): bitcoin trasnformation
 
@@ -166,8 +166,7 @@ dollar(90'000).print_bitcoin()
 /// transfomation in the #rational number  
 
 category euro (self: euro):euro;  
-
-mapfn euro(x: dollar):euro => x->number * 1.1;
+euro(x: dollar):euro => x->number * 1.1;
 
 /// because there is a transformation between bitcoin and the datatypes provides the compiler  is not necessary
 /// to write those transformations for euro, so #natural #number euro will be automatically implemented
