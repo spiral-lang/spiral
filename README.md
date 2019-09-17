@@ -135,7 +135,7 @@ bitcoin(50).print_bitcoin() // ok!
 /// it should be left and right-associative
 /// #bitcoin natural  == #natural bitcoin // it should be commutative
 /// it should have the same properties that a prime multiplication
-/// counting categories in a database become just a pow function, 
+/// counting categories in a database become just become a pow function, 
 /// pow(x, n), where x is the category and n is the number of item part of that category 
 
 let x = 50;
