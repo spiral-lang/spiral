@@ -146,11 +146,12 @@ x.print_dollar()
 console.log(bitcoin(50) + bitcoin(100)) /// bitcoin 150
 console.log(bitcoin(50) + 100) //error
 console.log(bitcoin(50) + dollar(30)) /// error
-// in spiral binary operator only happen between object  
-/// are mapped to the exact same category or category composition
+// in spiral binary operator only happen between objects  
+/// that are  mapped to the exact same category or category composition 
+/// if a object is (3*5) only can have binary operation with other 3*5 object, etc
 console.log(bitcoin(50) + bitcoin(30/90)) /// bitcoin(4530/90) 
-// natural number are #autom orphiscos a racionales and the
-// operation happens there
+// natural number are #auto morphed to rational and the operation happens there, 
+// this morphims does not lose info 50/1 == 50
   
 /// let fix those dam errros!!   whe should create a morphism between bitcoin and dollar
 mapfn bitcoin(dollar): bitcoin =>  dollar->number / 10'000  
