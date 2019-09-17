@@ -87,7 +87,7 @@ mapfn bitcoin(#natural  number): bitcoin;
 mapfn bitcoin(x: #rational  number): bitcoin{
     /// this assertion will be propagated and become a unitests, user input validations or fuzzy test.
     /// spiral provides the tool to generate them automatically
-    /// we only should care that the assertion have a name BMT
+    /// we only should care that the assertion have a name in this case BMT
     /// later on you can handle them with bitcoin::BMT even in ui interfaces
     assert  { x.divisor <= 0.00000001.divisor ,
               BMT {`to many digits, violate the bitcoin minimum transaction`, x} 
