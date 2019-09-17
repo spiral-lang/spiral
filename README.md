@@ -74,9 +74,9 @@ category bitcoin (self: bitcoin): bitcoin;
 
 
 // now we need to map any ad-hot object that we believe is part of the category 
-// using the #mapfn functor, inside it we  can make assertions which will be propagate to the concrete ambient
-// a big difference with  other languages where need  class is needed  to create objects
-// instead in spiral objects are mapped to categories
+// using the #mapfn functor, inside it we  can make assertions which will be propagate 
+// to the concrete ambient a big difference with  other languages where need  class is needed  
+// to create objects instead in spiral objects are mapped to categories
 
 // here we tell the compiler that every #natural number can be mapped to bitcoin
 mapfn bitcoin(#natural  number): bitcoin;
@@ -87,20 +87,25 @@ mapfn bitcoin(x: #rational  number): bitcoin{
     /// spiral provides the tool to generate them automatically
     /// we only should care that the assertion have a name BMT
     /// later on you can handle them with bitcoin::BMT even in ui interfaces
-    assert  x.divisor <= 0.00000001.divisor , BMT {`to many digits, violate the bitcoin minimum transaction`, x} 
+    assert  { x.divisor <= 0.00000001.divisor ,
+              BMT {`to many digits, violate the bitcoin minimum transaction`, x} 
+            }
 }
 
 console.log(bitcoin(2323.333))// ok
 console.log(bitcoin(2323.000000015))// bitcoin::BMT is fire
-/// by the way and float don't exist on spiral abstract ambient, everything is a natural | rational | irrational  | complex ... etc number
+/// by the way and float don't exist on spiral abstract ambient, 
+//// everything is a natural | rational | irrational  | complex ... etc number
 
 /// we can also add a map from str
 /// we will parse the string to number 
 /// check if is a valid natural number and then approved the mapping
-/// all those steps already exist on #natural number so not necessary to write them here due to type propagation
+/// all those steps already exist on #natural number so not necessary to write
+/// them here due to type propagation
 mapfn bitcoin(x: str): #number bitcoin;
-/// but where is the map between #number a bitcoin?  it will use the above maps and get whatever win first without ambiguities, in the case on ambiguities it /// will raise an error
-/// if your logic is correct the hashtag operator #,  will not raise any exception,
+/// but where is the map between #number a bitcoin?  it will use the above maps 
+/// and get whatever win first without ambiguities, in the case on ambiguities it
+/// will raise an error if your logic is correct the hashtag operator #,  will not raise any exception,
 /// while you write your code the compiler is testing the # operator algebraic properties in the background   
 
 
@@ -111,39 +116,51 @@ dollar(50).print_dollar() /// ok: 50 $USD
 dollar(50).print_bitcoin() /// Error: print_bitcoin is not defined for dollar  
 bitcoin(50).print_bitcoin() // ok!
 50.print_bitcoin()/// Error:  50 is not bitcon.
-// we can change the behavior with the #auto category that is the way that you can do metaprograming 
-// auto will subscribe to the events in the compiler and apply the assertion when some resource is created or updated
-// if all the assertion are ok then the category is attached automatically, there are also subcategories of #auto too
+/// we can change the behavior with the #auto category functor
+/// that is the way that you can do metaprograming 
+/// auto will subscribe to the events in the compiler and 
+/// apply the assertion when some resource is created or updated
+/// if all the assertion are ok then the category is attached automatically,
+//// there are also subcategories of #auto too
 #auto mapfn bitcoin(#natural  number): bitcoin;
 50.print_bitcoin() /// ok!
 
-/// the compiler will test all your mapfn and make sure that their composition follow the laws of the 
-/// categories composition. you can use the hashtag functor #, is a binary operator between categories and mapfn. 
-/// #bitcoin (#natural number) == #(#bitcoin natural) number // it should be left and right-associative
+/// the compiler will test all your mapfn and make sure that 
+/// their composition follow the laws of the 
+/// categories composition. you can use the hashtag functor #,
+/// is a binary operator between categories and mapfn. 
+/// #bitcoin (#natural number) == #(#bitcoin natural) number 
+/// it should be left and right-associative
 /// #bitcoin natural  == #natural bitcoin // it should be commutative
 /// it should have the same properties that a prime multiplication
-/// counting categories in a database become just a pow function, pow(x, n), where x is the category and n is the number of item part of that category 
+/// counting categories in a database become just a pow function, 
+/// pow(x, n), where x is the category and n is the number of item part of that category 
 
 let x = 50;
 x.print_bitcoin()  /// ok
-x.print_dollar() /// Error!!! when x was used on print_bitcoin, print_bitcoin propagate the bitcoin type to x
+x.print_dollar() 
+/// Error!!! when x was used on print_bitcoin, print_bitcoin propagate the bitcoin type to x
 
 console.log(bitcoin(50) + bitcoin(100)) /// bitcoin 150
 console.log(bitcoin(50) + 100) //error
 console.log(bitcoin(50) + dollar(30)) /// error
-//in spiral binary operator only happen between object  are mapped to the exact same category or category composition
-console.log(bitcoin(50) + bitcoin(30/90)) /// bitcoin(4530/90) // natural number are #autom orphiscos a racionales and the
+// in spiral binary operator only happen between object  
+/// are mapped to the exact same category or category composition
+console.log(bitcoin(50) + bitcoin(30/90)) /// bitcoin(4530/90) 
+// natural number are #autom orphiscos a racionales and the
 // operation happens there
   
 /// let fix those dam errros!!   whe should create a morphism between bitcoin and dollar
 mapfn bitcoin(dollar): bitcoin =>  dollar->number / 10'000  
-// the result here is then  be them pipelined to  the mapfn bitcoin(x: #rational  number): bitcoin trasnformation
+// the result here is then  be them pipelined to  
+// the mapfn bitcoin(x: #rational  number): bitcoin trasnformation
 
 console.log(bitcoin {3} -> dollar) //ok! dollar(30'000)  
 bitcoin(3).print_dollar() //ok! 30'000 $USD  
 dollar(90'000).print_bitcoin() 
 //ok! 9 $USD thanks to the #iso morphism  
-// (multiptication and division of natural number) are symetric  transfomation in the #rational number  
+// (multiptication and division of natural number) are symetric 
+// transfomation in the #rational number  
 
 category euro (self: euro):euro;  
 
