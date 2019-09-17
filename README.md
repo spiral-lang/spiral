@@ -172,6 +172,9 @@ mapfn euro(x: dollar):euro => x->number * 1.1;
 /// because there is a transformation between bitcoin and the datatypes provides the compiler  is not necessary
 /// to write those transformations for euro, so #natural #number euro will be automatically implemented
 
+/// to avoid the transaction check from bitcoin we can re implment that mapfn here again
+mapfn euro(x: #rational number):euro; 
+
 /// a little bit of fun!ctery
 console.log(bitcoin {3} -> euro) // euro(300'000/11)
 
