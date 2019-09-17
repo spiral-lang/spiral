@@ -154,7 +154,7 @@ console.log(bitcoin(50) + bitcoin(30/90)) /// bitcoin(4530/90)
 // this morphims does not lose info 50/1 == 50
   
 /// let fix those dam errros!!   whe should create a morphism between bitcoin and dollar
-mapfn bitcoin(dollar): bitcoin =>  dollar->number / 10'000  
+mapfn bitcoin(dollar): bitcoin =>  dollar->number / 10'000;  
 /// the result here is then  be them pipelined to  
 /// the mapfn bitcoin(x: #rational  number): bitcoin trasnformation
 
@@ -167,7 +167,7 @@ dollar(90'000).print_bitcoin()
 
 category euro (self: euro):euro;  
 
-mapfn euro(x: dollar):euro => x->number * 1.1
+mapfn euro(x: dollar):euro => x->number * 1.1;
 
 /// because there is a transformation between bitcoin and the datatypes provides the compiler  is not necessary
 /// to write those transformations for euro, so #natural #number euro will be automatically implemented
