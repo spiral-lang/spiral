@@ -15,7 +15,7 @@ paradigm, the sprial source code is morphed to  the  visitor pattern before run,
 away behind the `#spiral #collection theory`, so the programmer will feel that they are just doing scripting but in reality
 they will create code able to run in any context using the least amount of data transfer between nodes.
 
-in the initial phase the compiler use the v8 engine 
+in the initial phase, the compiler uses the v8 engine 
 
 
 # code snippets
@@ -39,87 +39,121 @@ console.log(hi {name: `john`})
 console.log(`john`.hi)  
 ```  
   
-### functors ara morphisms between categories 
+### in spiral functors are function objects and the category of functor that classify all the functions objects and the base of all the other categories 
 
-* the domain and co-domain of a functor are they own category, 
-  and the co-domain category has the same name of the functor
-* a functor is just an edge in the morphism graph (internally called the spiral or dark matter) that connect its domain 
-  with its co-domain
- 
-#### the laws of the functor
- 
-when a functor is declared in spiral it creates 
- 
-* two categories (a concept similar to a `class` or `trait`), one for the domain and other for the codomain
-* type (predicated/challenge) that will test if a value can be `#auto morphed` to those  categories
-* one mapping between categories (functor/ edge) in `the spiral graph`
-* when the functor returns, it wraps the result into a container which category have the same name of the functor
+* they are lazily evaluated in fact they need to be transformed into a task before be execute 
+  console.log do this in the scripting environment
+* You can access to its code and morph them  into whatever you want, generally this done by writing theories 
+* functors are written in the `abstract ambient`, where pointer, exceptions/errors, memory etc, don't exist
+* then they need to be morphed at the concrete ambient to the target machine requirements
+* functor contains a lot of information, you can read that as you please,
+  for example, all the datatypes predicated are propagated to the external boundary of the functor,
+  every assertion can be transformed later on it into tests!! to your target machine, database, etc.
   
-  
+### in spiral categories are functor that classifies objects   
+
+* the first object that the compiler provides are function literals and they are mapped to the category of functor
+* from them you can create your own categories
+* the hashtag # operator is an operator that allow the composition of categories naturally, 
+* in spiral categories `id` are mapped to the prime numbers
+* due that categories id are mapped to the prime numbers. the operator # hashtag has the same  properties of the multiplication *
+* for example if you concretize spiral in a database is very easy to classify objects in a query just using the mod operator or prime factorization
+* they are part of the internal category of functors, they also can be categorized in fact everything is spiral is a subcategory of functors
+
+
 ```javascript  
-functor dollar(x: number) => x  
-/// this will create the category  dollar::domain and the dollar::codomain and also the category dollar the wrapper
-/// creates the type dollar that will test id something can be morphed to dolar without losing information also called `#auto mophism`
-/// and one mapping from a value that is a number to its own categor (itself)
-/// and the result of that map  is  wrapped at the end into a tuple (x) which category name is dollar
-/// y = dollar(30)
-/// y.0 will return 30 the number
-///console.log(y) // will print dollar(30)
-///console.log(y.0) // will print 30
+category dollar(self: dollar): dollar  
+/// this will create the category  
+/// it doesn't say too much,
+/// but the compiler will assign an identity (something that make it unique) to the category, a prime number that is local to your scope hierarchy
+/// and will create the assertion that if an 
+/// object is part of this category, the prime number need to be present in the identity of the object
+
+category bitcoin (self: bitcoin): bitcoin;  
 
 
-const bitcoin = (x: number)=> x  
-  
-const print_dollar(x: dollar) => console.log(`{x.0} $US`)   
-/// to avoid print dollar(30) $US we need to use a #forgetful morphism in this case `x.0`
-const print_bitcoin(x: bitcoin) => console.log(`{x->number->str} BTC`)
-/// x->number->str will also remove the bitcoin() wrapper , this will force a morhism to number then morph to str
+// now we need to map any ad-hot object that we believe is part of the category 
+// in the mapfn we cam  can make assertions which will be propagate to the concrete ambient
+// a difference of other languages where need a  class to create objects
+// in spiral objects are mapped to categories
+
+// here we tell the compiler that every #natural number can be mapped to bitcoin
+mapfn bitcoin(#natural  number): bitcoin;
+
+/// some of the rational number too
+mapfn bitcoin(x: #rational  number): bitcoin{
+    /// this assertion will be propagated and become a unitests, user input validations or fuzzy test.
+    /// spiral provides the tool to generate them automatically
+    /// we only should care that the assertion have a name BMT
+    /// later on you can handle them with bitcoin::BMT even in ui interfaces
+    assert  x.divisor <= 0.00000001.divisor , BMT {`to many digits, violate the bitcoin minimum transaction`, x} 
+}
+
+console.log(bitcoin(2323.333))// ok
+console.log(bitcoin(2323.000000015))// bitcoin::BMT is fire
+/// by the way and float don't exist on spiral abstract ambient, everything is a natural | rational | irrational  | complex ... etc number
+
+/// we can also add a map from str
+/// we will parse the string to number 
+/// check if is a valid natural number and then approved the mapping
+/// all those steps already exist on #natural number so not necessary to write them here due to type propagation
+mapfn bitcoin(x: str): #number bitcoin;
+/// but where is the map between #number a bitcoin?  it will use the above maps and get whatever win first without ambiguities, in the case on ambiguities it /// will raise an error
+/// if your logic is correct the hashtag operator #,  will not raise any exception,
+/// while you write your code the compiler is testing the # operator algebraic properties in the background   
+
+
+functor print_dollar(x: dollar) => console.log(`{x->str} $US`)   
+functor print_bitcoin(x: bitcoin) => console.log(`{x->str} BTC`)
   
 dollar(50).print_dollar() /// ok: 50 $USD
 dollar(50).print_bitcoin() /// Error: print_bitcoin is not defined for dollar  
-50.print_bitcoin()  /// ok:  50 BTC , 50 is a number and have a #auto morphism to bitcoin
+bitcoin(50).print_bitcoin() // ok!
+50.print_bitcoin()/// Error:  50 is not bitcon.
+// we can change the behavior with the #auto category that is the way that you can do metaprograming 
+// auto will subscribe to the events in the compiler and apply the assertion when some resource is created or updated
+// if all the assertion are ok then the category is attached automatically, there are also subcategories of #auto too
+#auto mapfn bitcoin(#natural  number): bitcoin;
+50.print_bitcoin() /// ok!
+
+/// the compiler will test all your mapfn and make sure that their composition follow the laws of the 
+/// categories composition. you can use the hashtag functor #, is a binary operator between categories and mapfn. 
+/// #bitcoin (#natural number) == #(#bitcoin natural) number // it should be left and right-associative
+/// #bitcoin natural  == #natural bitcoin // it should be commutative
+/// it should have the same properties that a prime multiplication
+/// counting categories in a database become just a pow function, pow(x, n), where x is the category and n is the number of item part of that category 
+
 let x = 50;
 x.print_bitcoin()  /// ok
 x.print_dollar() /// Error!!! when x was used on print_bitcoin, print_bitcoin propagate the bitcoin type to x
-x.0.print_dollar() /// ok!!  #forgetful morphism as `member access or dot access` will return a codomain that
-/// can forget from where they come, in this case, because the codmain is a number it  can be cast again as dollar
 
-(x-> number).print_dollar() /// `->` is another #forgetful functor , it mean force the morphism so it will do ok
-
-/// notice that () is necessary to call the print_* functors, but in the `hi` functor it was not.
-/// there is a reason why, `hi` is a #pure functor, and the print_* family are #action functor
-/// (they have side effects outside the abstract boundary of the program), action functor always need the () 
-/// at the end, while #pure functors only need the () at the end when they need to receive more arguments.
-  
-print_dollar(bitcoin {3}) 
-/// Error: print_dollar not defined for bitcoin 
-/// and bitcoin has not an #auto morphism to dollar  
+console.log(bitcoin(50) + bitcoin(100)) /// bitcoin 150
+console.log(bitcoin(50) + 100) //error
+console.log(bitcoin(50) + dollar(30)) /// error
+//in spiral binary operator only happen between object  are mapped to the exact same category or category composition
+console.log(bitcoin(50) + bitcoin(30/90)) /// bitcoin(4530/90) // natural number are #autom orphiscos a racionales and the
+// operation happens there
   
 /// let fix those dam errros!!   whe should create a morphism between bitcoin and dollar
-#iso functor convert(: bitcoin->number): dolar =>  ::domain * 10'000 
-/// the convert function will support bitcon and will automatically apply the #forgetful functor `->` toward number
-/// the name convert is not relly relevant it can anything
-/// the whole domain is accessible using  ::domain path
-/// the #iso decorator here will automatically implement the conversion from dollar to bitcoin.    
- 
-/// #iso functor convert(currency: bitcoin) =>  dolar(currency.0 * 10'000)  
-/// is less hacky without ::domain = #iso functor convert(currency: bitcoin): dolar =>  currency.0 * 10'000  
-/// also  
+mapfn bitcoin(dollar): bitcoin =>  dollar->number / 10'000  
+// the result here is then  be them pipelined to  the mapfn bitcoin(x: #rational  number): bitcoin trasnformation
 
-/// note that  dolar(currency * 10'000)  
-/// without .0 will fire Error!!(the operation * is not implemented for bitcoin and number,
-/// please morph bitcoin to number using the member access .0 or -> number)
-  
 console.log(bitcoin {3} -> dollar) //ok! dollar(30'000)  
 bitcoin(3).print_dollar() //ok! 30'000 $USD  
-dollar(90'000).print_bitcoin() //ok! 9 $USD thanks to the #iso morphism   
+dollar(90'000).print_bitcoin() 
+//ok! 9 $USD thanks to the #iso morphism  
+// (multiptication and division of natural number) are symetric  transfomation in the #rational number  
 
-functor euro(x: dollar) => x->number * 1.1
+category euro (self: euro):euro;  
+
+mapfn euro(x: dollar):euro => x->number * 1.1
+
+// because there is a transformation between bitcoin and the datatypes provides the compiler  is not necessary
+// to write those transformations for euro, so #natural #number euro will be automatically implemented
 
 /// a little bit of fun!ctery
-console.log(bitcoin {3} -> euro -> decimal) // 27'272.727 
-/// console.log(bitcoin {3} -> euro) will print euro(300'000/11) due that a number in decimal form will lose information,
-/// and it will not clasify as #iso morphism 
+console.log(bitcoin {3} -> euro) // euro(300'000/11)
+
 
 /// why! why!?? wtf! I have not told the program how to do that. 
 /// yes!!, you did, but there is a little of magic here, the special categories called #auto categories
@@ -127,9 +161,7 @@ console.log(bitcoin {3} -> euro -> decimal) // 27'272.727
 /// this line of code `functor euro(x: dollar) => x->number * 1.1` as an #iso morphism between dollar and euro,
 /// the operation `*` has an inverse operator `/` that does not lose information in the category of `#rational numbers`.
 
-/// due that you specified that there is an #iso morphism between dollar and bitcoin,
-///  the compiler just #inferred the isomorphism between euro and bitcoin 
-  
+ 
 ```  
   
 ### types are propagated  
