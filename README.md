@@ -42,7 +42,7 @@ console.log(`john`.hi)
 ### in spiral functors are function objects and the category of functor that classify all the functions objects and the base of all the other categories 
 
 * they are lazily evaluated in fact they need to be transformed into a task before be execute 
-  console.log do this in the scripting environment
+  `console.log` do this in the scripting environment
 * You can access to its code and morph them  into whatever you want, generally this done by writing theories 
 * functors are written in the `abstract ambient`, where pointer, exceptions/errors, memory etc, don't exist
 * then they need to be morphed at the concrete ambient to the target machine requirements
@@ -56,7 +56,7 @@ console.log(`john`.hi)
 * from them you can create your own categories
 * the hashtag # operator is an operator that allow the composition of categories naturally, 
 * in spiral categories `id` are mapped to the prime numbers
-* due that categories id are mapped to the prime numbers. the operator # hashtag has the same  properties of the multiplication *
+* due that categories id are mapped to the prime numbers. the operator # hashtag has the same  properties of the prime multiplication *
 * for example if you concretize spiral in a database is very easy to classify objects in a query just using the mod operator or prime factorization
 * they are part of the internal category of functors, they also can be categorized in fact everything is spiral is a subcategory of functors
 
