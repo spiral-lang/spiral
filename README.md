@@ -95,7 +95,7 @@ mapfn bitcoin(x: #rational  number): bitcoin{
 }
 
 console.log(bitcoin(2323.333))// ok
-console.log(bitcoin(2323.000000015))// bitcoin::BMT is fire
+console.log(bitcoin(2323.000000015))// bitcoin::BMT is fired
 /// by the way and float don't exist on spiral abstract ambient, 
 //// everything is a natural | rational | irrational  | complex ... etc number
 
