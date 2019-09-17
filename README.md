@@ -65,9 +65,10 @@ console.log(`john`.hi)
 category dollar(self: dollar): dollar  
 /// this will create the category  
 /// it doesn't say too much,
-/// but the compiler will assign an identity (something that make it unique) to the category, a prime number that is local to your scope hierarchy
-/// and will create the assertion that if an 
-/// object is part of this category, the prime number need to be present in the identity of the object
+/// but the compiler will assign an identity (something that make it unique) to the category, 
+/// a prime number that is local to your scope hierarchy
+/// and will create the assertion that if an object is part of this category,
+/// the prime number need to be present in the identity of the object
 
 category bitcoin (self: bitcoin): bitcoin;  
 
