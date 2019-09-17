@@ -73,10 +73,12 @@ category dollar(self: dollar): dollar
 category bitcoin (self: bitcoin): bitcoin;  
 
 
-// now we need to map any ad-hot object that we believe is part of the category 
-// using the #mapfn functor, inside it we  can make assertions which will be propagate 
-// to the concrete ambient a big difference with  other languages where need  class is needed  
-// to create objects instead in spiral objects are mapped to categories
+///  now we need to map any ad-hot object that we believe is part of the category 
+/// using the #mapfn functor, inside it we  can make assertions which will be propagate 
+/// to the concrete ambient.
+/// a big difference with  other languages where is necesary to create 
+/// class definition in order to create objects  
+/// instead in spiral objects are mapped to categories
 
 // here we tell the compiler that every #natural number can be mapped to bitcoin
 mapfn bitcoin(#natural  number): bitcoin;
