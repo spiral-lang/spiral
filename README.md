@@ -155,22 +155,22 @@ console.log(bitcoin(50) + bitcoin(30/90)) /// bitcoin(4530/90)
   
 /// let fix those dam errros!!   whe should create a morphism between bitcoin and dollar
 mapfn bitcoin(dollar): bitcoin =>  dollar->number / 10'000  
-// the result here is then  be them pipelined to  
-// the mapfn bitcoin(x: #rational  number): bitcoin trasnformation
+/// the result here is then  be them pipelined to  
+/// the mapfn bitcoin(x: #rational  number): bitcoin trasnformation
 
 console.log(bitcoin {3} -> dollar) //ok! dollar(30'000)  
 bitcoin(3).print_dollar() //ok! 30'000 $USD  
 dollar(90'000).print_bitcoin() 
-//ok! 9 $USD thanks to the #iso morphism  
-// (multiptication and division of natural number) are symetric 
-// transfomation in the #rational number  
+/// ok! 9 $USD thanks to the #iso morphism  
+/// (multiptication and division of natural number) are symetric 
+/// transfomation in the #rational number  
 
 category euro (self: euro):euro;  
 
 mapfn euro(x: dollar):euro => x->number * 1.1
 
-// because there is a transformation between bitcoin and the datatypes provides the compiler  is not necessary
-// to write those transformations for euro, so #natural #number euro will be automatically implemented
+/// because there is a transformation between bitcoin and the datatypes provides the compiler  is not necessary
+/// to write those transformations for euro, so #natural #number euro will be automatically implemented
 
 /// a little bit of fun!ctery
 console.log(bitcoin {3} -> euro) // euro(300'000/11)
@@ -194,10 +194,10 @@ at the moment the basic definition of the type is
 
 ```javascript
 #auto functor type (predicated, consequence: decorator, error) => {predicated, consequence, error}
-// predicated is a check if pass then is assumed that the value is of the type, 
+/// predicated is a check if pass then is assumed that the value is of the type, 
 #auto functor predicated (x: #pure functor(*)=>bool) => x
-// consequence is a decorator that will decorated value with new morphisms in case that the predicated is ok
-// an error that will be fired in case that the check does not pass
+/// consequence is a decorator that will decorated value with new morphisms in case that the predicated is ok
+/// an error that will be fired in case that the check does not pass
 
 ```
 
