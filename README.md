@@ -24,11 +24,11 @@ and the spiral spec is very small due that everything can be expressed with func
 
 # Boundaries ,  Categories and Identity
 
-`boundaries`, `categories` and `identity`  are concept that emerge in spiral, they have a lot of thing in commons that most of the time you can see them like the same things 
+`boundaries`, `categories` and `identity`  are concept that emerge in spiral, they have a lot in commons and most of the time you can see them like the same things 
 
 a boundary is a logic structure that follow some rule of construction, this rule of construction give to the boundary its identity, so any mutation that violate this rule automatically will return error, and the only way to get ride of the rule of construction is destroying the boundary and create a new one with other rules.
 
-eventually those concepts differ, but for the moment to make things simpler are just the same
+eventually those concepts diverge, but for the moment to make things simpler, suppose that are just the same
  
 ##  Creating your first category  and boundary builder 
 
