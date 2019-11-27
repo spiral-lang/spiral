@@ -63,7 +63,7 @@ functor currency(x){
           assert(x.divisor <= 0.00000001.divisor, 
                 `to many digits, its violate the bitcoin minimum transaction`); 
     }
-	return x;
+	return currency(x);
 }
 let c = currency({name: 'BTC', value: 30 })
 c.name = 'asasas' // erro name should be in ["BTC", "USD"]
