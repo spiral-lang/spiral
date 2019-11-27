@@ -272,7 +272,8 @@ fn unary(f){
 // need to be marked as pure/impure and the rest can be archived by induction
 fn pure(f){
 	 functor(f);
-	 if(f.pure == true){
+	 if(f.pure == true && f.fn_calls.length == 0){
+	    //only alow the deepest functor to be marked as pure and inpure
 	    return pure(f);
 	 }else{
 	    f.fn_calls.map((call)=> pure(call));
