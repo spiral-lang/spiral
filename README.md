@@ -175,8 +175,7 @@ let z = mainstream_card ({
 
 //in case that you want to use mainstream_card as identity and not only an alias you need tu use recursive function
 fn mainstream_card(x){
-	//it will not gain the name mainstream_card
-	 (mastercard | visa)(with_full_name(x));
+	 (mastercard | visa)(with_full_name(x)); //assert the categories
 	 return mainstream_card(x);
 }
 ///with recursive function mainstream_card become a category by its own 
