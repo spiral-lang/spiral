@@ -260,6 +260,7 @@ fn format(){
 choice implementation looks ugly but assertion are also  boundaries,  that happens to have algebras so most of them will be eliminated in your code.
 
 example `assert(x==3) & assert(x>4)` automatically will raise and ambiguity error at compiled time
+
 example `assert(x>3) & assert(x>100)`, `assert(x>3)` will be eliminated by `assert(x>100)`
 
 
