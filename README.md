@@ -147,15 +147,31 @@ fn mastercard(x){
 //create a mastercard or visa  with full name
 
 let y = (mastercard | visa)(with_full_name({
-	number: `5314502205454767`,
-	ccv: 236, 
-	first_name: `john`,
-	last_name: `doe`,
-	expire: {month: 5, year: 2025}
+		number: `5314502205454767`,
+		ccv: 236, 
+		first_name: `john`,
+		last_name: `doe`,
+		expire: {month: 5, year: 2025}
 	}
 	)) 
 
 y.number = `4265103107648671`// ok the rules of construction state that y can be mastercard or visa
+
+//creating alias
+
+fn mainstream_card(x){
+	(mastercard | visa)(with_full_name(x));
+	return mainstream_card(x)
+}
+
+let z = mainstream_card ({
+		number: `5314502205454767`,
+		ccv: 236, 
+		first_name: `john`,
+		last_name: `doe`,
+		expire: {month: 5, year: 2025}
+	}) 
+
 ```
 
 ## adding method to the boundaries
