@@ -18,13 +18,18 @@ fn x(){}
 ```
  the spiral spec is very small due that everything can be expressed with functors.  the syntax is similar to es5/es6
 
-# Boundaries ,  Categories and Identity
+# Boundaries , Categories and Identity
 
-`boundaries`, `categories` and `identity`  are concept that emerge in spiral, they have a lot in commons and most of the time you can see them like the same things 
+`boundaries`, `categories` and `identity`  are central part of spiral theory,  they share a lot of thing in common, so for the moment to make things simpler, suppose that are just the same.
 
 a boundary is a logic structure that follow some rule of construction, this rule of construction give to the boundary its identity, so any mutation that violate this rule automatically will return error, and the only way to get ride of the rule of construction is destroying the boundary and create a new one with other rules.
 
-eventually those concepts diverge, but for the moment to make things simpler, suppose that are just the same
+> x is the same as y if and only if every predicate true of x is true of y as well.
+**Gottfried Leibniz**
+
+> a category is not just the boundary but also the set of all the morphism  to other categories.
+
+eventually those concepts diverge more later
  
 ##  Creating your first category  and boundary builder 
 
