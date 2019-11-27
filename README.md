@@ -312,7 +312,7 @@ sum.binary_operator = `+`;
 // this can be done by induction most of the time,  
 
 
-console.log((bitcoin(30) + bitcoin(90)).format) // `120 USD`
+console.log((bitcoin(30) + bitcoin(90)).format) // `120 BTC`
 ```
 
 the compiler will test the  `commutative`, `associative` and `distributive` laws  in a background job,  while you code, it will use those law to automatically optimized your code, most  optimization  happen due to  algebras
