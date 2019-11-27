@@ -92,6 +92,71 @@ assertion that cannot be eliminated in compilation time will be move to the boun
 
 one nice feature of `assertion/type  propagation` is that you can move them to the boundary of your back-end, (the computer that receive all the inbound communication) and eliminate all the bound check in the machines located in the deepest levels of your cluster at compile time. !!
 
+## combine boundaries
+
+the magic about boundaries is that they can be combine,  those combination create a concept very similar to clasess, the difference is that here you use small piece of logic.  
+
+```javascript
+fn credit_card(x){
+    assert(luhn(x.number));
+    assert(x.ccv .is natural(number));
+    assert(x.expire.month .is natural(number));
+    assert(x.expire.year .is natural(number));
+    return credit_card(x);
+}
+
+fn visa(x){
+    credit_card(x);
+    x.number.starts_with(`4`);
+    visa(x);
+}
+fn with_first_name(x){
+    credit_card(x);
+    assert(x.first_name .is str);
+    with_first_name(x);
+}
+
+fn with_last_name(x){
+    credit_card(x);
+    assert(x.last_name .is str);
+    with_last_name(x);
+}
+
+fn with_full_name(x){
+    credit_card(with_first_name(with_last_name(x)));
+    with_full_name(x);
+}
+
+// build a visa credit card
+let x = visa({number: `4193042222644651`, ccv: 236, expire: {month: 5, year: 2025}});
+console.log(x.category) // [credit_card, visa]
+x.number = `5314502205454767` // assertion wil raise here you are violating the rules of construction
+x.number = `4265103107648671` // ok
+x.first_name = `john` //will fail due that is not define in the category   [credit_card, visa]
+
+//but using auto categories
+with_first_name.auto = true;
+
+x.first_name = `john` //ok and now it will have [credit_card, visa, with_first_name]
+
+fn mastercard(x){
+    credit_card(x);
+    x.number.starts_with(`5`);
+    mastercard(x);
+}
+//create a mastercard or visa  with full name
+
+let y = (mastercard | visa)(with_full_name({
+	number: `5314502205454767`,
+	ccv: 236, 
+	first_name: `john`,
+	last_name: `doe`,
+	expire: {month: 5, year: 2025}
+	}
+	)) 
+
+y.number = `4265103107648671`// ok the rules of construction state that y can be mastercard or visa
+```
 
 ## adding method to the boundaries
 
