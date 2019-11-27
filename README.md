@@ -98,10 +98,10 @@ the magic about boundaries is that they can be combine,  those combination creat
 
 ```javascript
 fn credit_card(x){
-    assert(luhn(x.number));
-    assert(x.ccv .is natural(number));
-    assert(x.expire.month .is natural(number));
-    assert(x.expire.year .is natural(number));
+    luhn(x.number);
+    natural(number(x.ccv));
+    natural(number(x.expire.month));
+    natural(number(x.expire.year));
     return credit_card(x);
 }
 
