@@ -1,264 +1,439 @@
+
 # spiral  
   
 `state`: (#design phase) & (#unstable #experimental stage) 
  
-`description`:  spiral is a functional language that `try!!!` to follow the category theory, and there is and `!!!` in
- try due that is not `1:1` mapping and is not the intention to do it formally or use the exact same jargon, 
- also while some concepts sound similar to `Haskell` and can be effectively similar and even `#auto morphic` in some
- contexts they are not same, in spiral the  `#category theory`  has priority, then concept from other languages come later.
-
-heavily inspired by:  `javascript`,  `rust`,  `python` and `ruby`  
-  
-spiral is also a  `#declarative language` at the bottom, it can be hosted or run in anything, 
-it supports #aot and  #jit compilation and also can be interpreted, it  heavily oriented to numa architectures and edge computing
-paradigm, the sprial source code is morphed to  the  visitor pattern before run, all those morphism and abstraction are  hidden 
-away behind the `#spiral #collection theory`, so the programmer will feel that they are just doing scripting but in reality
-they will create code able to run in any context using the least amount of data transfer between nodes.
-
-in the initial phase, the compiler uses the v8 engine 
+`description`:  spiral is a functional language  inspired by the category theory and  oriented to create dynamical system, types are built with small set of logic  that can be combine together to create the traditional concept of classes.  is built with the objective to reduce the amount of work necessary to produce modern software today, it comes with nice features like auto implementation of tests.
 
 
-# code snippets
-  
-### hello world  
-  
-```javascript  
-console.log(`hello world`) /// hello world 
-```  
-oh no! it just looks  awfully similar to  javascript,  `let the (#fun ctor) begin` :blush:
+when programming spiral you use `functors or function/objects` instead of `functions`.  they are just data and can be manipulated by the programmer, query, transformed, transpiled or compile to whatever they want. 
 
-### your first functor   
-
-```javascript  
-functor hi(name)=> `Hi!! {name}`   
-
-/// all the below lines will works and  print the same   
-console.log(hi(`john`))  
-console.log(hi(name: `john`))  
-console.log(hi {name: `john`})  
-console.log(`john`.hi)  
-```  
-  
-### in spiral functors are function objects and the category of functor that classify all the functions objects and the base of all the other categories 
-
-* they are lazily evaluated in fact they need to be transformed into a task before be execute 
-  `console.log` do this in the scripting environment
-* You can access to its code and morph them  into whatever you want, generally this done by writing theories 
-* functors are written in the `abstract ambient`, where pointer, exceptions/errors, memory etc, don't exist
-* then they need to be morphed at the concrete ambient to the target machine requirements
-* functor contains a lot of information, you can read that as you please,
-  for example, all the datatypes predicated are propagated to the external boundary of the functor,
-  every assertion can be transformed later on it into tests!! to your target machine, database, etc.
-  
-### in spiral categories are functor that classifies objects   
-
-* the first object that the compiler provides are function literals and they are mapped to the category of functor
-* from them you can create your own categories
-* the hashtag # operator is an operator that allow the composition of categories naturally, 
-* in spiral categories `id` are mapped to the prime numbers
-* due that categories id are mapped to the prime numbers. the operator # hashtag has the same  properties of the prime multiplication *
-* for example if you concretize spiral in a database is very easy to classify objects in a query just using the mod operator or prime factorization
-* they are part of the internal category of functors, they also can be categorized in fact everything is spiral is a subcategory of functors
+ in theory you work as programmer is not just design those  functors but also compile or transpile  them to functions based in the specific requirements of your target machine  ,  the core library give you the tools to do it in most cases
 
 
-```javascript  
-category dollar(self: dollar): dollar  
-/// this will create the category  
-/// it doesn't say too much,
-/// but the compiler will assign an identity (something that make it unique) to the category, 
-/// a prime number that is local to your scope hierarchy
-/// and will create the assertion that if an object is part of this category,
-/// the prime number need to be present in the identity of the object
+```javascript 
+functor x(){}
+//to make things simpler also can be declared like this
+fn x(){}
+```
+the spiral spec is very small due that everything can be expressed with functors. 
 
-category bitcoin (self: bitcoin): bitcoin;  
+# Boundaries ,  Categories and Identity
 
-
-///  now we need to map any ad-hot object that we believe is part of the category 
-/// using the #mapfn functor, inside it we  can make assertions which will be propagate 
-/// to the concrete ambient.
-/// a big difference with  other languages where is necesary to create 
-/// class definition in order to create objects  
-/// instead in spiral objects are mapped to categories
-
-// here we tell the compiler that every #natural number can be mapped to bitcoin
-bitcoin(#natural  number): bitcoin;
-
-/// some of the rational number too
-bitcoin(x: #rational  number): bitcoin{
-    /// this assertion will be propagated and become a unitests, user input validations or fuzzy test.
-    /// spiral provides the tool to generate them automatically
-    /// we only should care that the assertion have a name in this case BMT
-    /// later on you can handle them with bitcoin::BMT even in ui interfaces
-    assert  { x.divisor <= 0.00000001.divisor ,
-              BMT {`to many digits, violate the bitcoin minimum transaction`, x} 
-            }
-}
-
-console.log(bitcoin(2323.333))// ok
-console.log(bitcoin(2323.000000015))// bitcoin::BMT is fired
-/// by the way and float don't exist on spiral abstract ambient, 
-//// everything is a natural | rational | irrational  | complex ... etc number
-
-/// we can also add a map from str
-/// we will parse the string to number 
-/// check if is a valid natural number and then approved the mapping
-/// all those steps already exist on #natural number so not necessary to write
-/// them here due to type propagation
-bitcoin(x: str): #number bitcoin;
-/// but where is the map between #number a bitcoin?  it will use the above maps 
-/// and get whatever win first without ambiguities, in the case on ambiguities it
-/// will raise an error if your logic is correct the hashtag operator #,  will not raise any exception,
-/// while you write your code the compiler is testing the # operator algebraic properties in the background   
+`boundaries`, `categories` and `identity`  are concept that emerge in spiral, they have a lot of thing in commons that most of the time, especially in the i you can see them like the same things 
 
 
-functor print_dollar(dollar) => console.log(`{dollar->number->str} $US`)   
-functor print_bitcoin(bitcoin) => console.log(`{bitcoin->number->str} BTC`)
-  
-dollar(50).print_dollar() /// ok: 50 $USD
-dollar(50).print_bitcoin() /// Error: print_bitcoin is not defined for dollar  
-bitcoin(50).print_bitcoin() // ok!
-50.print_bitcoin()/// Error:  50 is not bitcon.
-/// we can change the behavior with the #auto category functor
-/// that is the way that you can do metaprograming 
-/// auto will subscribe to the events in the compiler and 
-/// apply the assertion when some resource is created or updated
-/// if all the assertion are ok then the category is attached automatically,
-//// there are also subcategories of #auto too
-#auto mapfn bitcoin(#natural  number): bitcoin;
-50.print_bitcoin() /// ok!
+a boundary is a logic structure that follow some rule of construction, this rule of construction give to the boundary its identity , so any mutation that violate this rule automatically will return error, and the only way to get ride of the rule of construction is destroying the boundary and create a new one with other rules.
 
-/// the compiler will test all your mapfn and make sure that 
-/// their composition follow the laws of the 
-/// categories composition. you can use the hashtag functor #,
-/// is a binary operator between categories and mapfn. 
-/// #bitcoin (#natural number) == #(#bitcoin natural) number 
-/// it should be left and right-associative
-/// #bitcoin natural  == #natural bitcoin // it should be commutative
-/// it should have the same properties that a prime multiplication
-/// counting categories in a database become just become a pow function, 
-/// pow(x, n), where x is the category and n is the number of item part of that category 
+the way in which boundaries can be create in spiral is using recursive functions.
 
-let x = 50;
-x.print_bitcoin()  /// ok
-x.print_dollar() 
-/// Error!!! when x was used on print_bitcoin, print_bitcoin propagate the bitcoin type to x
+but there is a point where the concept of boundary differ from the category and below with the concepts of fibers, 
 
-console.log(bitcoin(50) + bitcoin(100)) /// bitcoin 150
-console.log(bitcoin(50) + 100) //error
-console.log(bitcoin(50) + dollar(30)) /// error
-// in spiral binary operator only happen between objects  
-/// that are  mapped to the exact same category or category composition 
-/// if a object is (3*5) only can have binary operation with other 3*5 object, etc
-console.log(bitcoin(50) + bitcoin(30/90)) /// bitcoin(4530/90) 
-// natural number are #auto morphed to rational and the operation happens there, 
-// this morphims does not lose info 50/1 == 50
-  
-/// let fix those dam errros!!   whe should create a morphism between bitcoin and dollar
-bitcoin(dollar): bitcoin =>  dollar->number / 10'000;  
-/// the result here is then  be them pipelined to  
-/// the mapfn bitcoin(x: #rational  number): bitcoin trasnformation
-
-console.log(bitcoin {3} -> dollar) //ok! dollar(30'000)  
-bitcoin(3).print_dollar() //ok! 30'000 $USD  
-dollar(90'000).print_bitcoin() 
-/// ok! 9 $USD thanks to the #iso morphism  
-/// (multiptication and division of natural number) are symetric 
-/// transfomation in the #rational number  
-
-category euro (self: euro):euro;  
-euro(x: dollar):euro => x->number * 1.1;
-
-/// because there is a transformation between bitcoin and the datatypes provides the compiler  is not necessary
-/// to write those transformations for euro, so #natural #number euro will be automatically implemented
-
-/// to avoid the transaction check from bitcoin we can re implment that mapfn here again
-mapfn euro(x: #rational number):euro; 
-
-/// a little bit of fun!ctery
-console.log(bitcoin {3} -> euro) // euro(300'000/11)
-
-
-/// why! why!?? wtf! I have not told the program how to do that. 
-/// yes!!, you did, but there is a little of magic here, the special categories called #auto categories
-/// in this case  the #auto category of  #iso morphism  automatically recognized 
-/// this line of code `functor euro(x: dollar) => x->number * 1.1` as an #iso morphism between dollar and euro,
-/// the operation `*` has an inverse operator `/` that does not lose information in the category of `#rational numbers`.
-
+ an a way to attach identity to an object. if a object is build with the rule of construction called bitcoin, we can use that rule name in its function of identity, due that the compiler make sure that the only way in which an object los its identity of construction is by destroying the object, 
  
-```  
-  
-### types are propagated  
-  
-instead of being inferred, types propagate themselves,
-is the responsibility of the types to check that the code is well defined the compiler just give the basic tools to types to do their job. 
+##  Creating your first category  and boundary builder 
 
-at the moment the basic definition of the type is 
+boundaries constructor are declared using recursive functors  and assertions.  lets create a small currency app, every currency  uses its own boundaries with a set of rules.
 
 ```javascript
-#auto functor type (predicated, consequence: decorator, error) => {predicated, consequence, error}
-/// predicated is a check if pass then is assumed that the value is of the type, 
-#auto functor predicated (x: #pure functor(*)=>bool) => x
-/// consequence is a decorator that will decorated value with new morphisms in case that the predicated is ok
-/// an error that will be fired in case that the check does not pass
+//start with bitcoin
+fn bitcoin(x){
+    //make sure that x is  rational number
+    rational(number(x));
+    //assert the limit to any bitcoin transaction
+    assert(x.divisor <= 0.00000001.divisor, `to many digits, its violate the bitcoin minimum transaction`); 
+    
+    // the magic then happens here, this recursive call will be simulated by the compiler
+    // and by induction in most cases will determine that the value in the input is the 
+    // same in the output and categorize  `fn bitcoin` as a boundary that forms
+    // a dynamical system with constant value, 
+    // it also support other types of dynamical system (they will be explained later)
+    return bitcoin(x)
+}
 
+//let create a bitcoin
+let x = bitcoin(30.00) //ok
+bitcoin(0.00000000000000000001) // error `to many digits`
+x = 'asasas' // error `asasas` can not be transformed into a rational number
+x = `543` // ok
+x = 0.00000000000000000001 // error `to many digits`
+```
+the above code have created
+
+ 1. the bitcoin category
+ 2. the builder for bitcoin boundary  ,  a concept similar to the class constructor, in fact boundaries can be mapped to classes
+ 3. the bitcoin identity, now is possible to use bitcoin in the identity function of the object, example:  `bitcoin/1`, `bitcoin/3`, etc in a database. 
+ 4.  the set of predicated or rule/type that define which valid state can hold a object inside the bitcoin boundary.
+
+the continous rules is then applied every time that a mutation is done and will raise and assertion if the mutation  moves the object to an invalid state.
+
+as explained above assertion create types, so the compiler will help you and make sure that you never raise any assertions or handle manually them before compile you code. 
+
+assertion that can not be eliminated in compilation time will be move to the boundary of the application.   network, os and other io events. they can be propagated  even to the  forms in the front-end, you will be in total control of how those assertion appears to your final user to avoid leak  how your code is implemented.
+
+one nice feature of `assertion/type  propagation` is that you can move them to the boundary of your back-end, (the computer that receive all the inbound communication) and eliminate all the bound check in the machines located in the deepest levels of your cluster
+
+
+## adding method to the boundaries
+
+by using assertion the compiler will pickup the concept of `methods` , it only requires that the assertion is done  to the first argument of the functor to be associated with a specific category/boundary. 
+```javascript 
+fn format(x){
+    bitcoin(x); //assert that is a bitcoin
+    return `{x} BTC`
+}
+console.log(bitcoin(90).format()) // 90 BTC
+console.log(bitcoin(90).format) // 90 BTC
+// also if the functor have not additional arguments and is pure the () at the end is not necessary
 ```
 
-types are like agents /workers /actors, they want to propagate greedily and cover most of what they can in
-`the spiral graph/ dark matter` (a fractal with all the morphism of the program) 
+# Algebras
 
-types should know how to merge/eliminate each to another
+algebras are a important part of spiral, and it `how most of the optimization happens!!!`. an algebra for category `c` is the set of all the `(binary|unary)(pure(endo(functors, c)))` 
 
-is will be very easy to create basic and high-level types but the documentation about this is still `wip`
+### what do it means `(binary | unary)(pure(endo(functors)))`  ?
+
+lets create those boundaries 
+
+```javascript 
+fn endo(f, c){
+	//assert that f is a functor
+	functor(f);
+	if(cat){
+	  //assert that c is a category
+	  category(c);
+	  /// every input should be in the category c 
+	  f.domain.map((x)=> assert(x.category == c));
+	  // codomian should be in category c
+	  assert(f.codomain.category == c)
+	  // the last part is most complicated but every functor invocation in the body of f
+	  // also should be an endo-functor on c,
+	  f.fn_calls.map((call)=> endo(call, c));
+	  return endo(f, f.codoman.category);
+	}else{
+		return endo(f, f.codoman.category);
+	}
+};
+fn bynary(f){
+	//assert that f is a functor
+	functor(f);
+	assert(f.domain.length == 2); 
+	return bynary(f)
+};
+
+fn unary(f){
+	//assert that f is a functor
+	functor(f);
+	assert(f.domain.length == 1); 
+	return unary(f)
+};
+
+//`pure` boundary will make sure recursively that the any functor call is also pure,
+// this mean that inside the functor no mutation is performed on the domain
+// this is more complicate to put in few lines of codes,
+// the functor at deepest levels like `set` and `get' 
+// need to be marked as pure/impure and the rest can be archived by induction
+fn pure(f){
+	 functor(f);
+	 if(f.pure == true){
+	    return pure(f);
+	 }else{
+	    f.fn_calls.map((call)=> pure(call));
+	     return pure(f);
+	 }
+};
+
+fn impure(f){
+   //a match take multiples functors and only one functors should be executed without error
+   //if more that one functor is executed it will raise an ambiguity error
+    match f {
+      (x){ 
+        assert(pure(x));
+        throw `a functor can not be pure and impure at the same time`;
+      },
+      (x)=> return impure(x);
+    }
+};
+
+//the key point of this kind of recursion is that any object that enter to the recursion become stable,
+//in both cases (`bitcoin`, `endo`, etc.) are using pure functors, so by induction automatically is 
+//recognized as stable. not all the boundaries need to be stables, and is probably be the most
+//exciting part of spiral
+
+endo.auto  = true;
+bynary.auto  = true;
+unary.auto  = true;
+pure.auto  = true;
+impure.auto  = true;
+
+/** auto categories
+* auto categories allow meta-programming, 
+* just add the auto property to the functor used to define a  category
+* and the compiler will recognized and attach the category to every object that match the rule 
+* due that auto-categories are not part of the rules of construction
+* an object can make mutation outside the boundary of the auto-category attached to it
+* this can be exploited in ui interface 
+*/ 
+
+fn with_binary_operator(f){
+	 binary((pure(endo(functor(f))));
+	 assert(f.binary_operator in ['+', '-', '*', '%', '|']);
+	 return pure(f);
+};
+with_binary_operator.auto = true;
+//additional properties need to be assert in previous auto(categories) to be used
+with_binary_operator.asdweew = 'sasas' // error I can't find an auto category that match this object
+with_binary_operator.binary_operator = '-';  //error `with_binary_operator`
+// is not a binary((pure(endo(functor))
+```
+
+now you have te tools to understand this `(binary | unary)(pure(endo(functors)))`,  the `|` is an algebra between functors called `choice` that  allow horizontally composition of  functors and  the most important operator in the whole spiral concept, most of the complex problem  in programming can be reduced to choices, `matches` and `conditionals` use `choice` 
+
+```javascript
+
+fn choice(x, y){
+	functor(f);
+	functor(f);
+	return (domain)=>{
+		//wrap possible assertion into a result object 
+		let left = result(x(domain));
+		let right = result(y(domain));
+		if (left.isOk & right.isOk){
+			throw AmbiguityError();
+		}else if(left.isOk){
+				return left.unwrap();
+		}else if(right.isOk){
+				return right.unwrap();
+		}else{
+			throw {left.error(), right.error()}
+		}
+	}
+}
+choice.binary_operator = "|"
+
+//the definition of match
+
+fn match({input, fns }){
+	return fns.reduce(choice)(input)
+}
+
+// if and else also are reduced by the choice operator
+
+// multiples fn  with the same name defined in the same file also are reduced by choice
+
+fn format(x){
+	number(x)
+	return `number: x`
+}
+fn format(x){
+	str(x)
+	return `str: x`
+}
+
+//both functions are internally reduced by choice
+
+const format =  50; 
+// is translate to 
+fn format(){
+	return 50
+}
+//boom!! some magic happens here choice will complain about that format always return ok(50) 
+// and raise and  ambiguity error,  this is easy to spot at compiled time
+```
+
+choice implementation looks ugly but assertion are also  boundaries,  that happens to have algebras so most of them will be eliminated in your code.
+
+example `assert(x==3) & assert(x>4)` automatically will raise and ambiguity error at compiled time
+example `assert(x>3) & assert(x>100)`, `assert(x>3)` will be eliminated by `assert(x>100)`
 
 
-```javascript  
-  
-const sum = (x, y) => x + y /// Error! the + operator is not defined for any type  
-  
-/// please make this work!!,  
-const sum = (x:number, y) => x + y /// Ok  
-/// x will propagate its own type, and the compiler will add the predicated that `y` needs to have 
-/// an  #auto morphism to number and also anotated the codomain  
-  
-console.log(sum("30"; 80)) /// ok!!: 110 both inputs have an #auto morphism to number so it will works  
-  
-/// sum("30"; 80) and sum(x: "30", y:80) are #auto morphics so the compiler understand this,  
-/// expression separated by comma `,` means that are part of set, and expression separated by semicolon `;` /// form a sequence  
-  
-```  
-### everything is immutable and everything is a functor
-
-const x = 60; /// in reality is `functor x() => 60`  
-let y = 60 // in reality is `functor y() => superposition {initial: 60}`  
-
-a superposition is what other program call versioned data structure
-  
-## deep dive into the spiral   
-  
-the best documentation right now is the source code.
 
 
-# spiral end goals  
-  
-* be able to create video-games with complex magic system that will allow to its player create custom magics,  
- and transfer that knowledge to other players, I am a big fan of the `overlord light novel`, and I want a video game like this  
-   
-* compile and simulate chemical reactions  
-  
-* be able to compile and run for first time a fully functional eukaryotic cell  
-  
-* check if we live or not in a simulation.
+### declaring an algebra
 
-# The Zen of spiral
+just follow the above rules
 
-* context matters
-* be lazy as possible
-* never write more that one time  the same logic 
-* there is no magic in the world all can be described with math (even human intelligence) 
-* the compiler should be your friend never your enemy, programing should not be about fighting the compiler,  
-  if there is an error in your logic it will gently tell you what is bad and how can you make it  better
-* never breaks abstraction in the `abstract ambient`,
-  this means that async, thread, pointers and alike will be not allowed with passion at last in the `#spiral #abstract #ambient theory`
-* context matters
-* context matters
-* context matters
+```javascript
+fn sum(x, y){
+	bitcoin(rational(number(x)));
+	bitcoin(rational(number(y)));
+	return bitcoin(x->number + y)
+	//the -> will force a morphism to number where + operator is implemented,
+	// morphism are explained later, the whole sum implementation as method of bitcoin 
+	// is not really necessary when you understand the category of auto(pure(morphism))
+}
+sum.binary_operator = `+`;
+
+// determine that sum is a correct algebra can be done by induction most of the time,  
+// other time unit-test will be implemented automatically in the background
+
+
+console.log((bitcoin(30) + bitcoin(90)).format) // `120 USD`
+```
+
+the compiler will test the  `commutative`, `associative` and `distributive` laws  in a background job,  while you code, it will use those law to automatically optimized your code, most  optimization  happen due to  algebras
+
+there will be an api to implement compiler background jobs in the future that will be mostly used to `auto(test)`. 
+
+
+### algebras only happen with object in the exact same category
+
+```javascript 
+bitcoin(30) + 90 //error impossible to use the binary operator `+`/sum
+// between bitcoin an  a natural(number)
+```
+
+but this can be overcome with morphism, especially the category of  `pure(auto(morphism))`
+
+## dollar
+
+```javascript
+fn dollar(x){
+    rational(number(x));
+    assert(x.divisor <= 0.001.divisor, `to many digits, its violate the minimum dollar transaction amount`);
+    return dollar(x);
+};
+
+fn format(x){
+    dollar(x); 
+    return `{x} USD`
+}
+fn sum(x, y){
+	dollar(rational(number(x)));
+	dollar(rational(number(x)));
+	return dollar(x->number + y)
+}
+sum.binary_operator = `+`;
+
+//dollar(30) + bitcoin(30) // error the `+` is not implemented for dollar and bitcoin
+```
+in fact binary operator only can happen between object in the exact same category , then how can we create bitcoin + dollar?,  the answer lied into morphism.
+
+## morphisms
+
+morphism are transformation of object from category A to category B,  almost everything functor that is not recursive can be considered a morphism.
+
+```javascript
+fn bitcoin(x){
+   dollar(x); 
+   return bitcoin(x->number / 70000 );	
+}
+
+fn dollar(x){
+   bitcoin(x); 
+   return dollar(x->number * 70000 );	
+}
+// at this point due auto categories the compiler will know that those thing are morphism,
+// even better the second function is not really necessary due that division is the inverse of the 
+// multiplication, so auto-cats will classify the whole thing as an iso(morphism), 
+
+// and also as auto(morphism), just like auto(cats), auto(morphism) happens automatically, 
+// which means that those  transformation will happen in the code without you need to acknowledge them. 
+// there is obviously some rules for auto(morphism), 
+// most important is purity and data need to be read 
+// sequentially without allocation, for example algorithms that use things like sort 
+// will difficult be part of the category of auto(morphism) 
+
+
+let x = bitcoin(dollar(70000) + bitcoin(30)) // bitcoin(100)
+let y = dollar(0)
+y = bitcoin(30) + dollar(1200) + bitcoin(1);// ok because `y` have been already declared as dollar
+ 
+dollar(30) + bitcoin(30) // error? the compiler will complain here 
+//there is an ambiguity and it does not know if the result should be in dollar or bitcoin.
+
+bitcoin(dollar(30)) + bitcoin(30) // ok
+```
+
+```javascript
+/// it is also possible to name morphism
+fn to_bitcoin(x){
+   dollar(x); 
+   return bitcoin(x->number / 70000 );	
+}
+
+//but now the compiler will complain, an ambiguity have been create
+// and now is need to disambiguate the code 
+let x = bitcoin(dollar(70000).to_bitcoin  + bitcoin(30)) 
+//or
+let x = bitcoin(dollar(70000).bitcoin  + bitcoin(30)) 
+//or
+let x = bitcoin(bitcoin(dollar(70000))  + bitcoin(30)) 
+```
+
+## the -> operator
+
+the `->` force a morphism,  it looks the shortest path between two categories  , it can be used when `auto(morphism)` does not work, it also can be use two compare two objects in a specific category
+
+> the only rule right now is that `->` can be use in anything, except  forgetful(functor) that are functors that drop part of the structure of the input object for which the `.` operator is better, or things that need more information to be done`
+
+```javascript 
+	let x = bitcoin(1);
+	let y = dollar(7000);
+	assert(x == y) //ok: there is not need to disambiguate,
+	// we can use -> here because the input object is number and is not losing 
+	// its structure when is transformed into a rational number
+	assert(x -> rational(number) == y) // this will compare y and x in the
+	//rational number category which mean it will fail because 1!= 7000 
+```
+
+
+##  Two boundaries in the same category should be isomorphic
+
+there is infinite ways to morph something between categories but the the rule of thumb lied into iso-morphism, which mean that there should be  pure transformation from `b1` to `b2` and from `b2` to `b1` in which not information is loss, if two object are in the exact same category or your plan to use algebras between them
+
+the guarantee correctness on the program logic
+
+```javascript
+//map a row in your database to bitcoin
+fn bitcoin(r){
+	your_database(row(r));
+	assert(r.currency == 'BTC')
+	rational(number(r.value));
+	return bitcoin(r)
+}
+
+
+let remote_bitcoin = bitcoin(your_database(row({currency:'BTC', value: 300})));
+let local_bitcoin = bitcoin(1700);
+
+local_bitcoin + remote_bitcoin// error the local_bitcoin and  remote_bitcoin are in different categories, 
+
+// your have two option here make a iso-morphism between your db row to rational(number) 
+// that will fail due that you are losing the currency information
+
+//or make one to bitcoin(rational(number))
+
+fn bitcoin(r){
+    //there is not need to put row again, also those functor can be called in any order 
+    // bitcoin(your_database(row)) == row(bitcoin(your_database)) == bitcoin(row(your_database))
+	bitcoin(your_database(r));
+	return bitcoin(rational(r.value)))
+}
+
+fn row(x){
+	bitcoin(rational(x));
+	return bitcoin(row({currency: 'BTC', value: x->number}))
+}
+
+local_bitcoin + remote_bitcoin // will return ok bitcoin(2000)
+local_bitcoin.currency // will do ok `BTC`
+
+let email  =  `john@sales.yourcompany.com`
+email.username // john
+email.host // sales.yourcompany.com
+email.department // sales , wtf!!, the magic of auto(categories) and auto(morphism)
+// if a ambiguity surge in the ambient then you will need to disambiguate
+email.yourcompany.department 
+```
+
+## not all assertions are necessary
+
+``` javascript 
+fn total(x, y, z){
+	return x + y + z; 
+}
+```
+
+the compiler will try to add them automatically, here will assume that  x, y and z  are numbers  as soon how there is a ambiguity error in the scope  (file, package) etc, for example the binary operator `+` was used in other category, 
+the compiler will complain and let you know that you need to make an assertion  `(the power of choice)`
