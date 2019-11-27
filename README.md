@@ -7,11 +7,11 @@
  
 `description`:  spiral is a functional language  inspired by the category theory and  oriented to create dynamical system, types are built from the bottom up, using small set of logic  that can be combine together to create the traditional concept of classes.  is built with the objective to reduce the amount of work necessary to produce modern software today, it comes with nice features like auto implementation of tests.
 
-one of the  final objectives of spiral is give to the developer all the tools needed to build any complex system without use other   programming languages or even use` query languages`, `no sql` or `graphql`, spiral is built to handle the most complex type systems, even real time graph engines, you can build anything, from an operative system to  you normal spa application.  
+one of the  final objectives of spiral is give to the developer all the tools needed to build any complex system without use other   programming languages or even use`query languages`, `no sql` or `graphql`, spiral is built to handle the most complex type systems, even real time graph engines, you can build anything, from an operative system to  you normal spa application.  
 
 when programming spiral you use `functors or function/objects` instead of `functions`.  they are just data and can be manipulated by the programmer, query, transformed, transpiled or compile to whatever they want. 
 
- in theory you work as programmer is not just design those  functors but also compile or transpile  them to functions/programs or entry application, based in the specific requirements of your target machine  ,  the core library give you the tools to do it in most cases
+in theory you work as programmer is not just design those  functors but also compile or transpile  them to functions/programs or entry application, based in the specific requirements of your target machine  ,  the core library give you the tools to do it in most cases
 
 
 ```javascript 
@@ -20,7 +20,7 @@ functor x(){}
 //to make things simpler also can be declared like this
 fn x(){}
 ```
-and the spiral spec is very small due that everything can be expressed with functors.  the syntax is similar to es5
+and the spiral spec is very small due that everything can be expressed with functors.  the syntax is similar to es5/es6
 
 # Boundaries ,  Categories and Identity
 
