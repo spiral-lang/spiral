@@ -160,9 +160,10 @@ y.number = `4265103107648671`// ok the rules of construction state that y can be
 //creating alias
 
 fn mainstream_card(x){
-	(mastercard | visa)(with_full_name(x));
-	return mainstream_card(x)
+	//it will not gain the name mainstream_card
+	return (mastercard | visa)(with_full_name(x));
 }
+
 
 let z = mainstream_card ({
 		number: `5314502205454767`,
@@ -171,6 +172,14 @@ let z = mainstream_card ({
 		last_name: `doe`,
 		expire: {month: 5, year: 2025}
 	}) 
+
+//in case that you want to use mainstream_card as identity and not only an alias you need tu use recursive function
+fn mainstream_card(x){
+	//it will not gain the name mainstream_card
+	 (mastercard | visa)(with_full_name(x));
+	 return mainstream_card(x);
+}
+with recursive function mainstream_card become a category by its own 
 
 ```
 
