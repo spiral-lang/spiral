@@ -179,9 +179,16 @@ fn mainstream_card(x){
 	 (mastercard | visa)(with_full_name(x));
 	 return mainstream_card(x);
 }
-with recursive function mainstream_card become a category by its own 
+///with recursive function mainstream_card become a category by its own 
 
 ```
+
+the compiler implements and make with testing sure in the background that any comnination of boundaries have the same meaning
+
+1. credit_card(visa) == visa(credit_card) 
+2. with_full_name(mastercard(credit_card)))  ==  with_full_name(credit_card(mastercard))) == credit_card(mastercard(with_full_name))) == ..etc
+
+this remove the annoyance to know how to order those constructors
 
 ## adding method to the boundaries
 
