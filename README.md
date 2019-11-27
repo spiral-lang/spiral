@@ -337,7 +337,8 @@ fn choice(x, y){
 	functor(x);
 	functor(y);
 	return (domain)=>{
-		//wrap possible assertion into a result object 
+		//recover and wrap possible assertion into a result object,
+		// if something trows return error(result)  otherwise ok(result)
 		let left = result(x(domain));
 		let right = result(y(domain));
 		if (left.isOk & right.isOk){
