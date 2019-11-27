@@ -105,6 +105,28 @@ console.log(bitcoin(90).format()) // 90 BTC
 console.log(bitcoin(90).format) // 90 BTC
 // also if the functor have not additional arguments and is pure the () at the end is not necessary
 ```
+### specification 
+
+```javascript 
+fn format(x){
+    directed(graph(x)); 
+    return `directed graph`
+}
+fn format(x){
+    cyclic(directed(graph(x))); 
+    return `cyclic directed graph`
+}
+```
+always the most specific method will be attached, if a boundary just have this two categories (directed, graph) it will call the first method , but a most specific boundary will call the second one (directed, cyclic, graph)
+
+```javascript
+//you also can use already defined methods using the -> operator
+fn format(x){
+    cyclic(directed(graph(x))); 
+    return (x->directed(graph)).format
+}
+```
+
 
 # Algebras
 
