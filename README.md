@@ -203,6 +203,8 @@ with_binary_operator.binary_operator = `-`;  //error
 
 now you have the tools to understand this `(binary | unary)(pure(endo(functors)))`,  the `|` is an algebra between functors called `choice` that  allow horizontally composition of  functors and  the most important operator in the whole spiral concept, most of the complex problem  in programming can be reduced to choices, `matches` and `conditionals` use `choice` 
 
+## choice
+
 ```javascript
 
 fn choice(x, y){
