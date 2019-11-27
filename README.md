@@ -22,7 +22,9 @@ fn x(){}
 
 `boundaries`, `categories` and `identity`  are central part of spiral theory,  they share a lot of thing in common, so for the moment to make things simpler, suppose that are just the same.
 
-a boundary is a logic structure that follow some rule of construction, this rule of construction give to the boundary its identity, so any mutation that violate this rule automatically will return error, and the only way to get ride of the rule of construction is destroying the boundary and create a new one with other rules.
+some definitions: 
+
+> a boundary is a logic structure that follow some rule of construction, this rule of construction give to the boundary its identity, so any mutation that violate this rule automatically will return error, and the only way to get ride of the rule of construction is destroying the boundary and create a new one with other rules.
 
 > x is the same as y if and only if every predicate true of x is true of y as well.
 **Gottfried Leibniz**
