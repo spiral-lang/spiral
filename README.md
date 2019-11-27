@@ -289,7 +289,7 @@ fn impure(f){
         assert(pure(x));
         throw `a functor can not be pure and impure at the same time`;
       },
-      (x)=> return impure(x);
+      (x)=>impure(x);
     }
 };
 
