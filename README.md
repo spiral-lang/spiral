@@ -206,8 +206,8 @@ now you have the tools to understand this `(binary | unary)(pure(endo(functors))
 ```javascript
 
 fn choice(x, y){
-	functor(f);
-	functor(f);
+	functor(x);
+	functor(y);
 	return (domain)=>{
 		//wrap possible assertion into a result object 
 		let left = result(x(domain));
