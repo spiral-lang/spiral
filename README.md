@@ -108,23 +108,23 @@ fn credit_card(x){
 fn visa(x){
     credit_card(x);
     x.number.starts_with(`4`);
-    visa(x);
+    return visa(x);
 }
 fn with_first_name(x){
     credit_card(x);
     assert(x.first_name .is str);
-    with_first_name(x);
+    return with_first_name(x);
 }
 
 fn with_last_name(x){
     credit_card(x);
     assert(x.last_name .is str);
-    with_last_name(x);
+    return with_last_name(x);
 }
 
 fn with_full_name(x){
     credit_card(with_first_name(with_last_name(x)));
-    with_full_name(x);
+    return with_full_name(x);
 }
 
 // build a visa credit card
@@ -142,7 +142,7 @@ x.first_name = `john` //ok and now it will have [credit_card, visa, with_first_n
 fn mastercard(x){
     credit_card(x);
     x.number.starts_with(`5`);
-    mastercard(x);
+    return  mastercard(x);
 }
 //create a mastercard or visa  with full name
 
