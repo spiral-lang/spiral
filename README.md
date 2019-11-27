@@ -182,7 +182,7 @@ fn mainstream_card(x){
 
 ```
 
-the compiler implements and make with testing sure in the background that any comnination of boundaries have the same meaning
+the compiler implements and makes sure with testing in the background that any comnination of boundaries have the same meaning
 
 1. credit_card(visa) == visa(credit_card) 
 2. with_full_name(mastercard(credit_card)))  ==  with_full_name(credit_card(mastercard))) == credit_card(mastercard(with_full_name))) == ..etc
