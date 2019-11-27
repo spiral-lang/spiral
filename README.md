@@ -481,3 +481,5 @@ fn total(x, y, z){
 
 the compiler will try to add them automatically, here will assume that  x, y and z  are numbers.  as soon how there is a ambiguity error in the scope  (file, package) etc, for example the binary operator `+` was used in other category, 
 the compiler will complain and let you know that you need to make an assertion  `(the power of choice)`
+
+for most day to day programmer spiral will look just  like javascript, not type assertion is necesary in the lowest level of abstractions.
