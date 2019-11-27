@@ -118,7 +118,7 @@ lets create those boundaries
 fn endo(f, c){
 	//assert that f is a functor
 	functor(f);
-	if(cat){
+	if(c){
 	  //assert that c is a category
 	  category(c);
 	  /// every input should be in the category c 
