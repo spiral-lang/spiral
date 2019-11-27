@@ -51,6 +51,11 @@ let x = bitcoin(30.00) //ok
 bitcoin(0.00000000000000000001) // error `to many digits`
 x = bitcoin(`asasas`) // error `asasas` can not be transformed into a rational number
 x = bitcoin(`543`) // ok
+x = 60// error only bitcoin is supported.
+//check the categories of the boundary
+assert(x .is bitcoin) //ok
+assert(x .is rational) //ok
+assert(x .is number) //ok
 
 functor currency(x){
 	assert(x.name in ["BTC", "USD"]);
