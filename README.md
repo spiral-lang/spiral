@@ -232,28 +232,46 @@ fn match({input, fns }){
 	initial:()=>{ throw `nothing matched` },
 	(accumulator, currentValue )=>choice(accumulator, currentValue)
 	)(input);
-}
+};
 
-// if and else statement also are reduced by the choice operator, 
+// if and else statement also use the  choice operator, but the transformation is  a bit more complex 
+
+fn example_if(x){
+	if(x==3){
+	    return 1;
+	}else{
+	    return 3;
+	}
+};
+is tranformed to 
+example_if = (x){assert(x==3); return 1} | (x){assert(!(x==3)); return 3} 
 
 // multiples fn  with the same name defined in the same file also are reduced by choice
 
 fn format(x){
 	number(x)
 	return `number: x`
-}
+};
 fn format(x){
 	str(x)
 	return `str: x`
-}
+};
 
-//both functions are internally reduced by choice
+format  =  (x){
+	number(x)
+	return `number: x`
+} | (x){
+	str(x)
+	return `str: x`
+};
+
 
 const format =  50; 
 // is translate to 
 fn format(){
 	return 50
 }
+
 //boom!! some magic happens here choice will complain about that format always return ok(50) 
 // and raise and  ambiguity error,  this is easy to spot at compiled time
 ```
